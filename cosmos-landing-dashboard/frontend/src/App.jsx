@@ -1,0 +1,26 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Auth from "./pages/Auth.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import ProtectedRoute from "./components/ProtectedRoutes.jsx";
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to={"/auth"} />} />
+        <Route path="/auth" element={<Auth/>} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
+  )
+}
+
+export default App;

@@ -14,8 +14,9 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node ./server.js",
-    "dev": "nodemon server.js"
+    "start": "cross-env NODE_ENV=production node server.js",
+    "staging": "cross-env NODE_ENV=production APP_ENV=staging node server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -23,7 +24,10 @@
     "dotenv": "^17.4.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.4.1",
+    "mongoose": "^9.4.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
     "nodemon": "^3.1.14"
   }
 }

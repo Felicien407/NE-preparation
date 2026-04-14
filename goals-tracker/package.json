@@ -1,0 +1,35 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "The Goals tracker system for displine-driven people.",
+  "keywords": [
+    "#hardwork",
+    "#consistency"
+  ],
+  "homepage": "https://github.com/Felicien407/NE-preparation#readme",
+  "bugs": {
+    "url": "https://github.com/Felicien407/NE-preparation/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Felicien407/NE-preparation.git"
+  },
+  "license": "ISC",
+  "author": "Felicien",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.4.1",
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "express-async-handler": "^1.2.0"
+  }
+}

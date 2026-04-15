@@ -14,13 +14,14 @@
     "type": "git",
     "url": "git+https://github.com/Felicien407/NE-preparation.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Felicien",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "server": "node backend/server.js",
-    "dev": "nodemon backend/server.js"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "cd frontend && npm run dev"
   },
   "devDependencies": {
     "colors": "^1.4.0",
@@ -32,6 +33,7 @@
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "express-async-handler": "^1.2.0",
-    "jsonwebtoken": "^9.0.3"
+    "jsonwebtoken": "^9.0.3",
+    "react-redux": "^9.2.0"
   }
 }

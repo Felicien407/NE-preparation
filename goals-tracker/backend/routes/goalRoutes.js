@@ -11,10 +11,6 @@ const protect = require("../middlewares/authMiddleware.js");
 const router = express.Router();
 
 router.route("/").get(protect, getGoals).post(protect, setGoal);
-router
-  .route("/:id")
-  .get(protect, getSingleGoal)
-  .delete(protect, deleteGoal)
-  .put(protect, updateGoal);
+router.route("/:id").get(protect, getSingleGoal).delete(protect, deleteGoal).put(protect, updateGoal);
 
 module.exports = router;

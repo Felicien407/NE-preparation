@@ -21,10 +21,12 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "cd frontend && npm run dev"
+    "client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
     "colors": "^1.4.0",
+    "concurrently": "^9.2.1",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mongoose": "^9.4.1",
@@ -33,7 +35,6 @@
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "express-async-handler": "^1.2.0",
-    "jsonwebtoken": "^9.0.3",
-    "react-redux": "^9.2.0"
+    "jsonwebtoken": "^9.0.3"
   }
 }

@@ -16,7 +16,6 @@ const getGoals = asyncHandler(async (req, res) => {
 // route   GET /api/goals
 // @access Private
 const getSingleGoal = asyncHandler(async (req, res) => {
-
   const id = req.params.id;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400);
@@ -50,7 +49,6 @@ const setGoal = asyncHandler(async (req, res) => {
 // route   UPDATE /api/goals
 // @access Private
 const updateGoal = asyncHandler(async (req, res) => {
-
   const id = req.params.id;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400);
@@ -69,7 +67,6 @@ const updateGoal = asyncHandler(async (req, res) => {
 // route   DELETE /api/goals
 // @access Private
 const deleteGoal = asyncHandler(async (req, res) => {
-
   const id = req.params.id;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400);
@@ -86,7 +83,6 @@ const deleteGoal = asyncHandler(async (req, res) => {
 });
 
 const checkAccess = (req, res, goal) => {
-
   // check for User
   if (!req.user) {
     res.status(401);
@@ -94,9 +90,9 @@ const checkAccess = (req, res, goal) => {
   }
 
   // check for goal
-  if (!goal){
-    res.status(404)
-    throw new Error("Goal not found")
+  if (!goal) {
+    res.status(404);
+    throw new Error("Goal not found");
   }
 
   // make sure logged in user matches the goal user

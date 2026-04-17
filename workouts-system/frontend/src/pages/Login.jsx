@@ -10,7 +10,6 @@ const Register = () => {
         email: '',
         password: ''
     })
-    const { names, email, password } = formData
     const { login, loading } = useContext(AuthContext)
     const Navigate = useNavigate();
 
@@ -21,7 +20,7 @@ const Register = () => {
             login(res.user)
             Navigate('/dashboard')
         } catch (error) {
-            const message = error.response?.data?.message
+            const message = error.response?.data?.message || 'Login failed'
             toast.error(message)
         }
     }
@@ -38,16 +37,14 @@ const Register = () => {
                         <input
                             type="email"
                             placeholder="Enter email"
-                            value={email}
-                            onChange={(e) => setFormData((prevState) => [{...prevState, email: e.target.value}])}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         />
                     </div>
                     <div>
                         <input
                             type="password"
                             placeholder="Enter password"
-                            value={password}
-                            onChange={(e) => setFormData((prevState) => [{...prevState, password: e.target.value}])}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         />
                     </div>
                 </div>

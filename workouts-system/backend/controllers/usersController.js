@@ -61,7 +61,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid password");
   }
 
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     message: "User login successful",
     user: {

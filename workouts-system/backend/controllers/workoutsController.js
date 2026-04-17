@@ -8,7 +8,7 @@ export const getAllWorkouts = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Unauthorized");
   }
-  const workouts = await Workout.find({}).sort({ createdAt: -1 });
+  const workouts = await Workout.find({user: req.user.id}).sort({ createdAt: -1 });
 
   res.status(200).json(workouts);
 });
@@ -61,14 +61,14 @@ export const updateWorkout = asyncHandler(async (req, res) => {
   }
   const { id } = req.params;
 
-  verifyAccess(req, res, id);
+  const workout = await verifyAccess(req, res, id);
 
-  const workout = await Workout.findOneAndUpdate(
+  const updatedWorkout = await Workout.findOneAndUpdate(
     { _id: id, user: req.user.id },
     { ...req.body },
   );
 
-  return res.status(200).json(workout);
+  return res.status(200).json(updatedWorkout);
 });
 
 const verifyAccess = async (req, res, id) => {

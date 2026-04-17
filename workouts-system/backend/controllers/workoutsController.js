@@ -8,7 +8,9 @@ export const getAllWorkouts = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Unauthorized");
   }
-  const workouts = await Workout.find({user: req.user.id}).sort({ createdAt: -1 });
+  const workouts = await Workout.find({ user: req.user.id }).sort({
+    createdAt: -1,
+  });
 
   res.status(200).json(workouts);
 });
@@ -16,9 +18,13 @@ export const getAllWorkouts = asyncHandler(async (req, res) => {
 // CREATE a new workouts
 export const createWorkout = asyncHandler(async (req, res) => {
   const { title, reps, load } = req.body;
-  if (!title || !reps || !load) {
+  if (!title || reps == null || load == null) {
     res.status(400);
     throw new Error("Please complete all fields");
+  }
+  if (isNaN(reps) || isNaN(load)) {
+    res.status(400);
+    throw new Error("Reps and Load must be numbers.");
   }
 
   if (!req.user) {
@@ -31,7 +37,7 @@ export const createWorkout = asyncHandler(async (req, res) => {
     reps,
     load,
   });
-  res.status(200).json(workout);
+  res.status(201).json(workout);
 });
 
 // GET a single workout
@@ -55,9 +61,13 @@ export const deleteWorkout = asyncHandler(async (req, res) => {
 // UPDATE a single workout
 export const updateWorkout = asyncHandler(async (req, res) => {
   const { title, reps, load } = req.body;
-  if (!title || !reps || !load) {
+  if (!title || reps == null || load == null) {
     res.status(400);
     throw new Error("Please complete all fields");
+  }
+  if (isNaN(reps) || isNaN(load)) {
+    res.status(400);
+    throw new Error("Reps and Load must be numbers.");
   }
   const { id } = req.params;
 

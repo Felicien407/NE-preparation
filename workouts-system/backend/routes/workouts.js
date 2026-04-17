@@ -6,17 +6,18 @@ import {
   deleteWorkout,
   updateWorkout,
 } from "../controllers/workoutsController.js";
+import protect from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
 // GET all workouts + a single workout & POST  a new workout
-router.route("/").get(getAllWorkouts).post(createWorkout);
+router.route("/").get(protect, getAllWorkouts).post(protect, createWorkout);
 
 // DELETE  a new workout & UPDATE  a new workout
 router
   .route("/:id")
-  .get(getSingleWorkout)
-  .delete(deleteWorkout)
-  .put(updateWorkout);
+  .get(protect, getSingleWorkout)
+  .delete(protect, deleteWorkout)
+  .put(protect, updateWorkout);
 
 export default router;

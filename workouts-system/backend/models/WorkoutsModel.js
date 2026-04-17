@@ -18,13 +18,13 @@ const workoutSchema = new Schema(
     },
     reps: {
       type: Number,
-      required: true,
-      min: 1,
+      required: [true, "Reps is required"],
+      min: [1, "Reps must be at least 1"],
     },
     load: {
       type: Number,
-      required: true,
-      min: 0,
+      required: [true, "Load is required"],
+      min: [0, "Load cannot be negative"],
     },
   },
   { timestamps: true },

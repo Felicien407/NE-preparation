@@ -1,21 +1,33 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 // schema
-const workoutSchema = new Schema({
+const workoutSchema = new Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      index: true,
+    },
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
+      trim: true,
     },
     reps: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
+      min: 1,
     },
     load: {
-        type: Number,
-        required: true
-    }
-}, { timestamps: true });
+      type: Number,
+      required: true,
+      min: 0,
+    },
+  },
+  { timestamps: true },
+);
 
-export default mongoose.model('Workout', workoutSchema)
+export default mongoose.model("Workout", workoutSchema);

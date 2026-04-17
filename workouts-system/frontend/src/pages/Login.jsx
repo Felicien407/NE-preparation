@@ -1,0 +1,61 @@
+import { useContext, useState } from "react"
+import { AuthContext } from "../context/AuthContext"
+import { useNavigate } from "react-router-dom"
+import API from "../services/api.js"
+import { toast } from "react-toastify"
+import Spinner from "../components/Spinner.jsx"
+
+const Register = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    })
+    const { login, loading } = useContext(AuthContext)
+    const Navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await API.post('/auth/login', formData)
+            login(res.user)
+            Navigate('/dashboard')
+        } catch (error) {
+            const message = error.response?.message
+            toast.error(message)
+        }
+    }
+
+    if (loading) {
+        <Spinner />
+    }
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <div>
+                        <input
+                            type="email"
+                            placeholder="Enter email"
+                            value={email}
+                            onChange={(e) => setFormData((prevState) => [...prevState, e.target.value])}
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="Enter password"
+                            value={password}
+                            onChange={(e) => setFormData((prevState) => [...prevState, e.target.value])}
+                        />
+                    </div>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+
+        </div>
+    )
+
+}
+
+export default Register;

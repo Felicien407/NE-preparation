@@ -10,6 +10,7 @@ const Register = () => {
         email: '',
         password: ''
     })
+    
     const { login, loading } = useContext(AuthContext)
     const Navigate = useNavigate();
 
@@ -20,13 +21,13 @@ const Register = () => {
             login(res.user)
             Navigate('/dashboard')
         } catch (error) {
-            const message = error.response?.message
+            const message = error.response?.data?.message
             toast.error(message)
         }
     }
 
     if (loading) {
-        <Spinner />
+        return <Spinner />
     }
 
     return (
@@ -38,7 +39,7 @@ const Register = () => {
                             type="email"
                             placeholder="Enter email"
                             value={email}
-                            onChange={(e) => setFormData((prevState) => [...prevState, e.target.value])}
+                            onChange={(e) => setFormData((prevState) => [{...prevState, email: e.target.value}])}
                         />
                     </div>
                     <div>
@@ -46,7 +47,7 @@ const Register = () => {
                             type="password"
                             placeholder="Enter password"
                             value={password}
-                            onChange={(e) => setFormData((prevState) => [...prevState, e.target.value])}
+                            onChange={(e) => setFormData((prevState) => [{...prevState, password: e.target.value}])}
                         />
                     </div>
                 </div>

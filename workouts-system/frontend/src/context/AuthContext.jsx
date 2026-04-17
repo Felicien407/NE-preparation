@@ -5,23 +5,23 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const loadUser = async () => {
             try {
                 const token = localStorage.getItem("token")
                 if (!token) {
-                    setIsLoading(false)
+                    setLoading(false)
                     return;
                 }
                 const res = await API.get("/auth/me")
-                setUser(res.user)
+                setUser(res.data)
             } catch (error) {
                 localStorage.removeItem("token")
                 setUser(null)
             } finally {
-                setIsLoading(false)
+                setLoading(false)
             }
         }
         loadUser();
@@ -29,12 +29,12 @@ export const AuthProvider = ({ children }) => {
 
     const register = (data) => {
         localStorage.getItem("token", data.token)
-        setUser(data.user, token)
+        setUser(data.user)
     };
 
     const login = (data) => {
         localStorage.getItem("token", data.token)
-        setUser(data.user, token)
+        setUser(data.user)
     };
 
     const logout = () => {

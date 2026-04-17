@@ -11,6 +11,8 @@ const Register = () => {
         email: '',
         password: ''
     })
+
+    const { names, email, password } = formData
     const { register, loading } = useContext(AuthContext)
     const Navigate = useNavigate();
 

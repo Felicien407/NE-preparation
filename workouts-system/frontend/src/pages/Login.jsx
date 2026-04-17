@@ -10,7 +10,7 @@ const Register = () => {
         email: '',
         password: ''
     })
-    
+    const { names, email, password } = formData
     const { login, loading } = useContext(AuthContext)
     const Navigate = useNavigate();
 

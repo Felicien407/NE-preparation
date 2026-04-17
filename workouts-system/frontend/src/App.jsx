@@ -2,9 +2,9 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import ProtectedRoute from "./components/ProtectedRoute"
-import Register from "./pages/Register"
-import Login from "./pages/Login"
-import Dashboard from "./pages/Dashboard"
+import Register from "./pages/Register.jsx"
+import Login from "./pages/Login.jsx"
+import Dashboard from "./pages/Dashboard.jsx"
 
 const App = () => {
   return (
